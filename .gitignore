@@ -9,9 +9,6 @@ node_modules/
 # testing
 /coverage
 
-# config
-backend/config/config.env
-
 # production
 /frontend/build
 
