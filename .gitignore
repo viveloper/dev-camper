@@ -10,7 +10,7 @@ node_modules/
 /coverage
 
 # config
-config/config.env
+backend/config/config.env
 
 # production
 /frontend/build
