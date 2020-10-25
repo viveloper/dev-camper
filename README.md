@@ -12,4 +12,6 @@ Create a .env file in then backend and add the following
 NODE_ENV = development
 PORT = 5000
 MONGO_URI = your mongodb uri
+GEOCODER_PROVIDER = mapquest
+GEOCODER_API_KEY = your key
 ```
