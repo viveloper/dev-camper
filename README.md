@@ -14,6 +14,8 @@ PORT = 5000
 MONGO_URI = your mongodb uri
 GEOCODER_PROVIDER = mapquest
 GEOCODER_API_KEY = your key
+FILE_UPLOAD_PATH=./public/uploads
+MAX_FILE_UPLOAD=1000000
 ```
 
 ### Seed Database
