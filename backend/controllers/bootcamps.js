@@ -26,13 +26,36 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
     : '-createdAt';
   delete reqQuery.sort;
 
+  // Pagenation
+  const page = reqQuery.page ? Number(reqQuery.page) : 1;
+  delete reqQuery.page;
+  const limit = reqQuery.limit ? Number(reqQuery.limit) : 10;
+  delete reqQuery.limit;
+  const total = await Bootcamp.countDocuments();
+  const pagenation = {};
+  if (page > 1) {
+    pagenation.prev = {
+      page: page - 1,
+      limit,
+    };
+  }
+  if (limit * page < total) {
+    pagenation.next = {
+      page: page + 1,
+      limit,
+    };
+  }
+
   const bootcamps = await Bootcamp.find(reqQuery)
     .select(selectedFields)
-    .sort(sortedFields);
+    .sort(sortedFields)
+    .skip((page - 1) * limit)
+    .limit(limit);
 
   res.status(200).json({
     success: true,
     count: bootcamps.length,
+    pagenation,
     data: bootcamps,
   });
 });
