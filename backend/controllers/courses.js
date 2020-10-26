@@ -7,8 +7,6 @@ const asyncHandler = require('../middleware/asyncHandler');
 // @route   GET /api/v1/bootcamps/:bootcampId/courses
 // @access  Public
 exports.getCourses = asyncHandler(async (req, res, next) => {
-  console.log(req.params);
-
   // Create operators ($gt, $gte, etc)
   const queryStr = JSON.stringify(req.query).replace(
     /\b(gt|gte|lt|lte|in)\b/g,
@@ -56,7 +54,11 @@ exports.getCourses = asyncHandler(async (req, res, next) => {
     .select(selectedFields)
     .sort(sortedFields)
     .skip((page - 1) * limit)
-    .limit(limit);
+    .limit(limit)
+    .populate({
+      path: 'bootcamp',
+      select: 'name description',
+    });
 
   res.status(200).json({
     success: true,
