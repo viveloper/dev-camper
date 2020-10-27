@@ -18,6 +18,7 @@ FILE_UPLOAD_PATH=./public/uploads
 MAX_FILE_UPLOAD=1000000
 JWT_SECRET=jwt scret key
 JWT_EXPIRE=30d
+JWT_COOKIE_EXPIRE=30
 ```
 
 ### Seed Database
